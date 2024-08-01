@@ -1,5 +1,7 @@
 package ex01;
 
+import ex05.javaconfig.JavaConfig;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
@@ -17,5 +19,7 @@ public class MainClass {
         GenericXmlApplicationContext context = new GenericXmlApplicationContext("application-context.xml");
         context.getBean(SpringTest.class).hello();
 
+        AnnotationConfigApplicationContext con = new AnnotationConfigApplicationContext(JavaConfig.class);
+        con.getBean(SpringTest.class).hello();
     }
 }
