@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+<!--
+    네임스페이스
+    xml에서 특정 라이브러리를 참조해서 선언하고 싶은 경우에 쓰는 표현
+    xmlns 는 모듈의 위치를 나타낸다
+    beans 태그로 사용한다는 의미
+    ref : 객체 타입 의미
+-->
+<!--  빈들은 싱글톤 타입, scope="prototype" 이라 적으면 여러 객체가 생성된다.  -->
+    <bean name="test" class="ex01.SpringTest"/>
+
+<!--  의존성 주입 (생성자 주입) - 객체가 생성 될때, 특정 객체를 생성해 주입  -->
+    <bean id="hotel" class="ex02.constructor.Hotel">
+        <constructor-arg ref="chef"/>
+    </bean>
+    <bean id="chef" class="ex02.constructor.Chef"/>
+
+    <!--  의존성 주입 (세터 주입) - 객체가 생성 될때, 특정 객체를 생성해 주입  -->
+    <bean id="myDataSource" class="ex02.setter.MyDataSource">
+        <property name="uid" value="jsp"/>
+        <property name="upw" value="jsp"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost"/>
+    </bean>
+    <bean id="memberDAO" class="ex02.setter.MemberDAO">
+        <property name="myDataSource" ref="myDataSource"/>
+    </bean>
+
+</beans>
